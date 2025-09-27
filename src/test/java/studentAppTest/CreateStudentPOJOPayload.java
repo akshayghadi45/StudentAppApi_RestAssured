@@ -1,5 +1,6 @@
 package studentAppTest;
 
+import com.github.javafaker.Faker;
 import io.restassured.http.ContentType;
 import org.example.model.Student;
 import org.junit.jupiter.api.DisplayName;
@@ -13,11 +14,12 @@ public class CreateStudentPOJOPayload extends TestBase {
     @Test
     @DisplayName("Create new Student by sending a payload as string")
     void createNewStudent(){
+        Faker fake = new Faker();
         Student student = new Student();
-        student.setFirstName("test3");
-        student.setLastName("User3");
-        student.setEmail("test33@gmail.com");
-        student.setProgramme("Computer Science");
+        student.setFirstName(fake.name().firstName());
+        student.setLastName(fake.name().lastName());
+        student.setEmail(fake.internet().emailAddress());
+        student.setProgramme(fake.commerce().department());
         student.setCources(List.of("c++","java"));
 
         given()
