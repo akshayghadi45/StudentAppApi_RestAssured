@@ -43,6 +43,7 @@ public class StudentGetRequestTest extends TestBase{
 
     @Test
     @DisplayName("Get Single CS Student from the list")
+
     public void getStudentById(){
         Response response = given()
                 .pathParam("id", 1)
