@@ -53,4 +53,36 @@ public class JsonPathJsonSlurperExamples {
         System.out.println(zipList);
     }
 
+    @Test
+    @DisplayName("Get address of the store with zip 55901")
+    public void getAddressOfStoreWithZip() {
+        List<String> addressList = validatableResponse.extract().path("data.findAll{it.zip=='55901'}.address");
+        System.out.println(addressList);
+
+    }
+
+    @Test
+    @DisplayName("Get All the info of store with max and min id")
+    public void getStoreMaxAndMinId(){
+        HashMap<String,Object> storeMax = validatableResponse.extract().path("data.max{it.id}");
+        System.out.println(storeMax);
+        HashMap<String,Object>  storeMin = validatableResponse.extract().path("data.min{it.id}");
+        System.out.println(storeMin);
+
+    }
+
+    @Test
+    @DisplayName("Get all store states with ids less than 10")
+    public void getAllStoreStatesWithIdsLessThanTen(){
+        List<String> states = validatableResponse.extract().path("data.findAll{it.id<10}.state");
+        System.out.println(states);
+    }
+
+    @Test
+    @DisplayName("Get all the service name for all the stores")
+    public void getAllServiceNames(){
+        List<String> serviceNames = validatableResponse.extract().path("data.services.findAll{it.name}name");
+        System.out.println(serviceNames);
+    }
+
 }
